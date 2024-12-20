@@ -1,0 +1,41 @@
+{
+    "name": "hxm/laravel-planning",
+    "description": "Laravel Planing",
+    "keywords": [
+        "planning",
+        "laravel",
+        "laravel planning",
+        "cycle",
+        "resource",
+        "interval"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "HoanXuanMai",
+            "email": "hoanxuanmai@gmail.com"
+        }
+    ],
+    "require": {
+        "illuminate/database": "^7.0|^8.0|^9.0|^10.0|^11.0",
+        "illuminate/support": "^7.0|^8.0|^9.0|^10.0|^11.0",
+        "yajra/laravel-datatables-oracle": "^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "HXM\\LaravelPlanning\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "HXM\\LaravelPlanning\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "HXM\\LaravelPlanning\\LaravelPlanningProvider"
+            ]
+        }
+    }
+}
