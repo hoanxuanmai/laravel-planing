@@ -4,9 +4,10 @@ use HXM\LaravelPlanning\Events;
 use HXM\LaravelPlanning\Listeners;
 use HXM\LaravelPlanning\Models;
 
-
 return [
-    "resources" => [], //string[] resource list
+    "resources" => [
+        // \App\User::class
+    ], //string[] resource list
     "useMigration" => true,
     "tables" => [
         "prefix" => '',
@@ -37,6 +38,7 @@ return [
         Events\PlanOrderCreatedEvent::class => function (Events\PlanOrderCreatedEvent $event) {
             $event->planOrder->addLog('Created');
         },
+        Events\PlanCycleCreatedEvent::class => [],
         Events\PlanCycleUpdatedStatusEvent::class => [
             Listeners\CreatePlanScheduleWhenCycleChangedStatus::class,
             function (Events\PlanCycleUpdatedStatusEvent $event) {

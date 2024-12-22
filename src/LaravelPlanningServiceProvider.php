@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
-class LaravelPlanningProvider extends ServiceProvider
+class LaravelPlanningServiceProvider extends ServiceProvider
 {
     function register()
     {
@@ -24,19 +24,20 @@ class LaravelPlanningProvider extends ServiceProvider
         if (!class_exists('LaravelPlanning')) {
             class_alias(LaravelPlanning::class, 'LaravelPlanning');
         }
-
     }
 
     function boot()
     {
         if ($this->app->runningInConsole()) {
+
             config('laravel_planning.useMigration', false) && $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
 
             $this->publishes([
                 __DIR__ . '/../database/migrations' => database_path('migrations')
             ], 'laravel-planning:migration');
 
-            $this->publishes([__DIR__ . '/../config/laravel_planning.php' => config_path('laravel_planning.php')
+            $this->publishes([
+                __DIR__ . '/../config/laravel_planning.php' => config_path('laravel_planning.php')
             ], 'laravel-planning:config');
 
             $this->commands([
