@@ -1,7 +1,25 @@
 # Laravel Planning
 
 Laravel Planning is a library that supports creating and managing plans in Laravel projects.
+- [Features](#features)
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Configuration](#configuration)
+  - [Default Configurations](#default-configurations)
+  - [Directory Tree Representation](#directory-tree-representation)
+- [Resource Management](#resource-management)
+- [Implementing PlanResourceInstance](#implementing-planresourceinstance)
+- [Panel Management](#panel-management)
+  - [Using the Panel](#using-the-panel)
+- [Usage](#usage)
+  - [Creating a Plan Order for a Resource](#creating-a-plan-order-for-a-resource)
+  - [Managing Plan Cycles](#managing-plan-cycles)
+  - [Querying Resources with Cycles](#querying-resources-with-cycles)
+- [Contact](#contact)
+- [Contribution](#contribution)
+- [License](#license)
 
+---
 
 ## Features
 
@@ -9,7 +27,6 @@ Laravel Planning is a library that supports creating and managing plans in Larav
 - Event-driven actions and listeners
 - Built-in scheduling and cron job support
 - Customizable panel interface
-
 
 ## Requirements
 
@@ -101,7 +118,22 @@ return [
     ]
 ];
 ```
-
+### Directory Tree Representation
+```
+Resource
+├── PlanOrder (1-1)
+│   ├── Plan (1-1)
+│   │   ├── PlanItem (1-N)
+│   │   │   ├── PlanItemPercentPrice (1-1)
+│   │   │   ├── PlanCondition (1-1)
+│   ├── OrderItem (1-N)
+│   │   │   ├── PlanOrderItemPercentPrice (1-1)
+│   │   │   ├── PlanCondition (1-1)
+│   ├── PlanCycle (1-N)
+│   │   ├── OrderItem (1-N)
+│   │   └── CycleItem (1-N)
+│   └── OrderLog (1-N)
+```
 ### Resource Management
 
 The plans operate based on resource models. To create a plan for `App\User`, add it to the `resources` array in the configuration file:
